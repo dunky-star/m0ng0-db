@@ -1,0 +1,6 @@
+https://www.mongodb.com/try   --> URL for downloading MongoDB.
+
+COMMANDS:
+*********
+1. net stop mongodb
+2. net start mongodb
