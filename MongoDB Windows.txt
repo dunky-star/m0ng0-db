@@ -1,6 +1,35 @@
 https://www.mongodb.com/try   --> URL for downloading MongoDB.
 
-COMMANDS:
-*********
+ADMINISTRATIVE COMMANDS:
+*************************
 1. net stop mongodb
 2. net start mongodb
+
+
+DATABASE COMMANDS:
+******************
+1. show dbs -> to list databases.
+
+
+
+
+Setup Alias Shortcuts for Mongo and Mongod
+___________________________________________
+
+a) Open up your Hyper terminal running Git Bash.
+b) Change directory to your home directory with the following command:
+       cd ~
+c) Here, we’re going to create a file called .bash_profile using the following command:
+       touch .bash_profile
+d) Open the newly created .bash_profile with vim using the following command:
+       vim .bash_profile
+e) In vim, hit the I key on the keyboard to enter insert mode.
+f) In your explorer go to C → Program Files → MongoDB → Server
+   Now you should see the version of your MongoDB.
+   
+g) Paste in the following code into vim, make sure your replace the 4.0 with your version that you see in explorer
+       alias mongod="/d/Program\ files/MongoDB/Server/4.0/bin/mongod.exe"
+       alias mongo="/d/Program\ Files/MongoDB/Server/4.0/bin/mongo.exe"
+	  
+h) Hit the Escape key on your keyboard to exit the insert mode. Then type
+	   :wq!
