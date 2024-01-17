@@ -89,7 +89,15 @@ db.flightData.updateMany({}, {$set{marker: "toDelete"}})
 
 // Embedded documents and Array Theory
 
-db.flightData.updateMany({}, {$set: {status: {description: "on-time", lastUpdate: "1 hour ago"}}})
+db.flightData.updateMany({}, {$set: {status: {description: "on-time", lastUpdate: "1 hour ago", details: {responsible: "G Opiyo"}}}})
+
+// Working with Arrays
+
+db.passengers.updateOne({name: "Albert Twostone"}, {$set: {hobbies: ["Sprot", "Cooking", "Biking"]}})
+
+// Acessing structured data
+
+db.flightData.find({"status.description": "on-time"}).pretty()
 
 
 // Deleting document from a collection
