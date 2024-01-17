@@ -25,6 +25,12 @@ DOCUMENTS & CRUD BASICS:
 
 -> use flights
 
+// Finding documents in a collection
+
+db.flightData.find().pretty()
+db.flightData.find({intercontinental: true})  -> FInding with a filter condition
+db.flightData.find({distance: 12000})
+
 // Inserting documents into a collection "flightData"
 
 -> db.flightData.insertOne(
@@ -47,14 +53,30 @@ db.flightData.insertOne(
   }
 )
 
-// Deleting document from a collection
-
-db.flightData.deleteOne(departureAirport: "LHR")
+db.flightData.insertMany([{
+    "departureAirport": "AKK",
+    "arrivalAirport": "EBB",
+    "aircraft": "Airbus A380",
+    "distance": 14000,
+    "intercontinental": true
+  },
+  {
+    "departureAirport": "MLP",
+    "arrivalAirport": "TXL",
+    "aircraft": "Airbus A320",
+    "distance": 200,
+    "intercontinental": false
+  }])
 
 
 // Updating document in a collection
 
 db.flightData.updateOne({distance: 12000}, {$set{marker: "delete"}})
+db.flightData.updateMany({}, {$set{marker: "toDelete"}})
 
 
+// Deleting document from a collection
+
+db.flightData.deleteOne(departureAirport: "LHR")
+db.flightData.deleteMany({marker: "toDelete"})
 	   
