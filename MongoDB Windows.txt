@@ -24,12 +24,19 @@ DOCUMENTS & CRUD BASICS:
 ************************
 
 -> use flights
+-> show collections
 
 // Finding documents in a collection
 
 db.flightData.find().pretty()
-db.flightData.find({intercontinental: true})  -> FInding with a filter condition
-db.flightData.find({distance: 12000})
+db.flightData.find({intercontinental: true})  -> Finding with a filter condition satisfying intercontinental
+db.flightData.find({distance: {$gt: 10000}}) -> Finding with a filter condition for distance > 10000
+db.flightData.findOne({distance: {$gt: 10000}}) -> Filter and returns the first matching condition
+
+// Find and Cursor Object
+
+db.passengers.find().toArray()
+
 
 // Inserting documents into a collection "flightData"
 
@@ -72,6 +79,7 @@ db.flightData.insertMany([{
 // Updating document in a collection
 
 db.flightData.updateOne({distance: 12000}, {$set{marker: "delete"}})
+db.flightData.updateOne({_id: ObjectId('65a756f596f8fbaf6ea75cc5')}, {$set: {delayed: true}})
 db.flightData.updateMany({}, {$set{marker: "toDelete"}})
 
 
