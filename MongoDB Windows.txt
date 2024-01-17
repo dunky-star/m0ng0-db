@@ -9,6 +9,9 @@ ADMINISTRATIVE COMMANDS:
 DATABASE COMMANDS:
 ******************
 1. show dbs -> to list databases.
+2. use shop -> To switch and connect to a brand new shop database
+3. db.products.insertOne({name: "A Book", price: 12.99}) -> To insert a document in a collection called "products"
+4. db.products.find() -> Returns all the document in a collection
 
 
 
