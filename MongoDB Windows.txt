@@ -36,6 +36,11 @@ db.flightData.findOne({distance: {$gt: 10000}}) -> Filter and returns the first 
 // Find and Cursor Object
 
 db.passengers.find().toArray()
+db.passengers.find().forEach((passengerData) => {printjson(passengerData)})  // This is the best optmized query
+
+// Find (Using Projection) to just get the important you need without wasting the bandwidth
+
+db.passengers.find({}, {name: 1, _id: 0}).pretty()
 
 
 // Inserting documents into a collection "flightData"
@@ -81,6 +86,10 @@ db.flightData.insertMany([{
 db.flightData.updateOne({distance: 12000}, {$set{marker: "delete"}})
 db.flightData.updateOne({_id: ObjectId('65a756f596f8fbaf6ea75cc5')}, {$set: {delayed: true}})
 db.flightData.updateMany({}, {$set{marker: "toDelete"}})
+
+// Embedded documents and Array Theory
+
+db.flightData.updateMany({}, {$set: {status: {description: "on-time", lastUpdate: "1 hour ago"}}})
 
 
 // Deleting document from a collection
