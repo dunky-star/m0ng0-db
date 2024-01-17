@@ -11,30 +11,50 @@ DATABASE COMMANDS:
 1. show dbs -> to list databases.
 2. use shop -> To switch and connect to a brand new shop database
 3. db.products.insertOne({name: "A Book", price: 12.99}) -> To insert a document in a collection called "products"
-4. db.products.find() -> Returns all the document in a collection
+4. db.products.find().pretty() -> Returns all the document in a collection
+5. db.products.insertOne({name: "A Tshirt", price: 1229.99, description: "This is a high quality T-shirt"})
+6. db.products.insertOne({name: "A Computer", price: 1229.99, description: "A high quality computer", 
+                         details: {cpu: "Intel i7 8770", memory: 32})
+						
 
 
 
 
-Setup Alias Shortcuts for Mongo and Mongod
-___________________________________________
+DOCUMENTS & CRUD BASICS:
+************************
 
-a) Open up your Hyper terminal running Git Bash.
-b) Change directory to your home directory with the following command:
-       cd ~
-c) Here, we’re going to create a file called .bash_profile using the following command:
-       touch .bash_profile
-d) Open the newly created .bash_profile with vim using the following command:
-       vim .bash_profile
-e) In vim, hit the I key on the keyboard to enter insert mode.
-f) In your explorer go to C → Program Files → MongoDB → Server or your installed path
-   Now you should see the version of your MongoDB.
-   
-g) Paste in the following code into vim, make sure your replace the 4.0 with your version that you see in explorer
-       alias mongod="/d/MongoData/MongoDB/Server/6.0/bin/mongod.exe"
-       alias mongo="/d/MongoData/MongoDB/Server/6.0/bin/mongo.exe"
-	  
-h) Hit the Escape key on your keyboard to exit the insert mode. Then type
-	   :wq!
-	   
+-> use flights
+
+// Inserting documents into a collection "flightData"
+
+-> db.flightData.insertOne(
+ {
+    "departureAirport": "MUC",
+    "arrivalAirport": "SFO",
+    "aircraft": "Airbus A380",
+    "distance": 12000,
+    "intercontinental": true
+  }
+)
+
+db.flightData.insertOne(
+ {
+    "departureAirport": "LHR",
+    "arrivalAirport": "TXL",
+    "aircraft": "Airbus A320",
+    "distance": 950,
+    "intercontinental": false
+  }
+)
+
+// Deleting document from a collection
+
+db.flightData.deleteOne(departureAirport: "LHR")
+
+
+// Updating document in a collection
+
+db.flightData.updateOne({distance: 12000}, {$set{marker: "delete"}})
+
+
 	   
