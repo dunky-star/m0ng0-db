@@ -8,14 +8,22 @@ ADMINISTRATIVE COMMANDS:
 
 DATABASE COMMANDS:
 ******************
-1. show dbs -> to list databases.
-2. use shop -> To switch and connect to a brand new shop database
-3. db.products.insertOne({name: "A Book", price: 12.99}) -> To insert a document in a collection called "products"
-4. db.products.find().pretty() -> Returns all the document in a collection
-5. db.products.insertOne({name: "A Tshirt", price: 1229.99, description: "This is a high quality T-shirt"})
-6. db.products.insertOne({name: "A Computer", price: 1229.99, description: "A high quality computer", 
+1. db.version() -> To show MongoDB version
+2. show dbs -> to list databases.
+3. use databaseName -> To create a new Database.
+4. use databaseName -> db.dropDatabase()
+5. use shop -> To switch and connect to a brand new shop database
+6. db.products.insertOne({name: "A Book", price: 12.99}) -> To insert a document in a collection called "products"
+7. db.products.find().pretty() -> Returns all the document in a collection
+8. db.products.insertOne({name: "A Tshirt", price: 1229.99, description: "This is a high quality T-shirt"})
+9. db.products.insertOne({name: "A Computer", price: 1229.99, description: "A high quality computer", 
                          details: {cpu: "Intel i7 8770", memory: 32})
-						
+						 
+						 
+TO RENAME MONGODB DATABASE:
+***************************
+mongodump --db old_dbName --out dump/
+mongorestore --db new_dbName --drop dump/old_dbName		
 
 
 
@@ -102,6 +110,6 @@ db.flightData.find({"status.description": "on-time"}).pretty()
 
 // Deleting document from a collection
 
-db.flightData.deleteOne(departureAirport: "LHR")
+db.flightData.deleteOne({departureAirport: "LHR"})
 db.flightData.deleteMany({marker: "toDelete"})
 	   
