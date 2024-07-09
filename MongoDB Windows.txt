@@ -18,6 +18,7 @@ DATABASE COMMANDS:
 8. db.products.insertOne({name: "A Tshirt", price: 1229.99, description: "This is a high quality T-shirt"})
 9. db.products.insertOne({name: "A Computer", price: 1229.99, description: "A high quality computer", 
                          details: {cpu: "Intel i7 8770", memory: 32})
+10. db.myCollection.drop() -> To drop a collection.
 						 
 						 
 TO RENAME MONGODB DATABASE:
@@ -46,7 +47,7 @@ db.flightData.findOne({distance: {$gt: 10000}}) -> Filter and returns the first 
 db.passengers.find().toArray()
 db.passengers.find().forEach((passengerData) => {printjson(passengerData)})  // This is the best optmized query
 
-// Find (Using Projection) to just get the important you need without wasting the bandwidth
+// Find (Using Projection) to just get the important data you need without wasting the bandwidth.
 
 db.passengers.find({}, {name: 1, _id: 0}).pretty()
 
@@ -58,7 +59,7 @@ db.passengers.find({}, {name: 1, _id: 0}).pretty()
     "departureAirport": "MUC",
     "arrivalAirport": "SFO",
     "aircraft": "Airbus A380",
-    "distance": 12000,
+    "distance": 15000,
     "intercontinental": true
   }
 )
@@ -74,11 +75,12 @@ db.flightData.insertOne(
 )
 
 db.flightData.insertMany([{
-    "departureAirport": "AKK",
-    "arrivalAirport": "EBB",
+    "departureAirport": "JFK",
+    "arrivalAirport": "TX",
     "aircraft": "Airbus A380",
-    "distance": 14000,
-    "intercontinental": true
+    "distance": 15000,
+    "intercontinental": true,
+	"_id": "txl-lhr-1"
   },
   {
     "departureAirport": "MLP",
@@ -92,7 +94,7 @@ db.flightData.insertMany([{
 // Updating document in a collection
 
 db.flightData.updateOne({distance: 12000}, {$set{marker: "delete"}})
-db.flightData.updateOne({_id: ObjectId('65a756f596f8fbaf6ea75cc5')}, {$set: {delayed: true}})
+db.flightData.updateOne({_id: ObjectId('668c0ac03407a7aa0a230d26')}, {$set: {delayed: true}})
 db.flightData.updateMany({}, {$set{marker: "toDelete"}})
 
 // Embedded documents and Array Theory
@@ -112,4 +114,7 @@ db.flightData.find({"status.description": "on-time"}).pretty()
 
 db.flightData.deleteOne({departureAirport: "LHR"})
 db.flightData.deleteMany({marker: "toDelete"})
+
+// $lookup (Aggregate)
+db.customers.aggregate([{$lookup: {from: "addresses", localField: "address", foreignField: "_id", as: "addresses" }}])
 	   
